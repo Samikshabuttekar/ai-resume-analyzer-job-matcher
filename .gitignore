@@ -1,0 +1,35 @@
+# Python virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+
+# Node.js
+node_modules/
+
+# Build files
+dist/
+build/
+
+# IDE settings
+.vscode/
+
+# Salesforce
+.sf/
+
+# OS files
+.DS_Store
+Thumbs.db
