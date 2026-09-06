@@ -1,6 +1,7 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException
 
 from backend.app.services.resume_parser import extract_resume_text
+from backend.app.services.resume_analyzer import analyze_resume
 
 router = APIRouter()
 
@@ -23,6 +24,9 @@ async def upload_resume(file: UploadFile = File(...)):
             file_bytes,
             file.content_type,
         )
+
+        analysis = analyze_resume(extracted_text)
+
     except ValueError as error:
         raise HTTPException(
             status_code=400,
@@ -32,6 +36,7 @@ async def upload_resume(file: UploadFile = File(...)):
     return {
         "filename": file.filename,
         "content_type": file.content_type,
-        "message": "Resume uploaded and text extracted successfully",
+        "message": "Resume uploaded and analyzed successfully",
         "text": extracted_text,
+        "analysis": analysis,
     }
