@@ -39,6 +39,15 @@ def extract_phone(text: str) -> str | None:
     return match.group(0) if match else None
 
 
+def extract_name(text: str) -> str | None:
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+
+    if lines:
+        return lines[0]
+
+    return None
+
+
 def extract_skills(text: str) -> list[str]:
     text_lower = text.lower()
 
@@ -53,6 +62,7 @@ def extract_skills(text: str) -> list[str]:
 
 def analyze_resume(text: str) -> dict:
     return {
+        "name": extract_name(text),
         "email": extract_email(text),
         "phone": extract_phone(text),
         "skills": extract_skills(text),
