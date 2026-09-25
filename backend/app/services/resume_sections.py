@@ -158,6 +158,10 @@ def normalize_heading(line: str) -> str:
         "",
         line,
     )
+        # Handle PDF extraction artifacts where letters are duplicated.
+    if line == "eedduuccaattiioonn":
+        line = "education"
+        
 
     line = re.sub(
         r"\s+",
